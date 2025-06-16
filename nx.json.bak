@@ -40,6 +40,12 @@
       }
     },
     {
+      "plugin": "@nx/react/tsc-plugin",
+      "options": {
+        "targetName": "typecheck"
+      }
+    },   
+    {
       "plugin": "@nx/eslint/plugin",
       "options": {
         "targetName": "lint"
