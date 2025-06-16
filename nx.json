@@ -10,32 +10,41 @@
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "nxCloudId": "68508a224ca0ad2b07070032",
+  "workspaceLayout": {
+    "appsDir": "apps",
+    "libsDir": "libs"
+  },
   "plugins": [
+    "@nx/eslint",
+    "@nx/next",
     {
-      "plugin": "@nx/js/typescript",
+      "plugin": "@nx/react/router-plugin",
       "options": {
-        "typecheck": {
-          "targetName": "typecheck"
-        },
-        "build": {
-          "targetName": "build",
-          "configName": "tsconfig.lib.json",
-          "buildDepsName": "build-deps",
-          "watchDepsName": "watch-deps"
-        }
-      }
-    },
-    {
-      "plugin": "@nx/next/plugin",
-      "options": {
-        "startTargetName": "start",
         "buildTargetName": "build",
         "devTargetName": "dev",
-        "serveStaticTargetName": "serve-static",
+        "startTargetName": "start",
+        "watchDepsTargetName": "watch-deps",
         "buildDepsTargetName": "build-deps",
-        "watchDepsTargetName": "watch-deps"
+        "typecheckTargetName": "typecheck"
       }
     },
+    {
+      "plugin": "@nx/react/webpack-plugin",
+      "options": {
+        "buildTargetName": "build",
+        "devTargetName": "dev",
+        "startTargetName": "start",
+        "watchDepsTargetName": "watch-deps",
+        "buildDepsTargetName": "build-deps",
+        "typecheckTargetName": "typecheck"
+      }
+    },
+    {
+      "plugin": "@nx/react/tsc-plugin",
+      "options": {
+        "targetName": "typecheck"
+      }
+    },   
     {
       "plugin": "@nx/eslint/plugin",
       "options": {
@@ -46,6 +55,21 @@
   "generators": {
     "@nx/next": {
       "application": {
+        "style": "tailwind",
+        "linter": "eslint"
+      }
+    },
+    "@nx/react": {
+      "application": {
+        "appsDir": "apps",
+        "style": "tailwind",
+        "linter": "eslint"
+      },
+      "component": {
+        "style": "tailwind"
+      },
+      "library": {
+        "libsDir": "libs",
         "style": "tailwind",
         "linter": "eslint"
       }

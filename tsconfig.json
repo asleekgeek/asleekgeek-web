@@ -5,6 +5,12 @@
   "references": [
     {
       "path": "./apps/asleekgeek-web"
+    },
+    {
+      "path": "./studio"
+    },
+    {
+      "path": "./apps/studio"
     }
   ]
 }

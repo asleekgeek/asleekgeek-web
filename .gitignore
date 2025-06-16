@@ -8,8 +8,12 @@ out-tsc
 # dependencies
 node_modules
 
-# IDEs and editors
+
+# IDE - IntelliJ IDEA
+.idea/*
 /.idea
+
+# IDEs and editors
 .project
 .classpath
 .c9/
