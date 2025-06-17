@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { featuredArticles } from '@/data/articles';
 import { ChevronRight } from 'lucide-react';

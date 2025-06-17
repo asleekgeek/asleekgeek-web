@@ -1,3 +1,16 @@
+import { client } from '@/sanity/client';
+
+export const getArticles = async () => {
+  return client.fetch(`*[_type == "article"]{title, slug, body, ...}`);
+};
+
+export const getArticleBySlug = async (slug: string) => {
+  return client.fetch(
+    `*[_type == "article" && slug.current == $slug][0]{title, slug, body, ...}`,
+    { slug }
+  );
+};
+
 export const featuredArticles = [
   {
     title: "Building Scalable Microservices with Kubernetes",
