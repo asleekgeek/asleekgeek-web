@@ -1,0 +1,4 @@
+{
+  "buildCommand": "npx nx build frontend --prod",
+  "outputDirectory": "apps/frontend/.next"
+}
