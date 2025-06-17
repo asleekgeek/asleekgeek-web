@@ -15,7 +15,7 @@ export default function Hero() {
             Beyond the Code. Building the Future.
           </p>
           <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-            Deep insights into software architecture, cutting-edge development practices, and the technologies shaping tomorrow's digital landscape.
+Deep insights into software architecture, cutting-edge development practices, and the technologies shaping tomorrow&apos;s digital landscape.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
