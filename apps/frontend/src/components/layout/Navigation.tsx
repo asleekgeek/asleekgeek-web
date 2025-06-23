@@ -20,7 +20,7 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <Link href="#" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Articles</Link>
+              <Link href="/articles" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Articles</Link>
               <Link href="#" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Categories</Link>
               <Link href="#" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Community</Link>
               <Link href="#" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">About</Link>
@@ -57,7 +57,7 @@ export default function Navigation() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-gray-800 border-t border-gray-700">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <Link href="#" className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">Articles</Link>
+            <Link href="/articles" className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">Articles</Link>
             <Link href="#" className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">Categories</Link>
             <Link href="#" className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">Community</Link>
             <Link href="#" className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium">About</Link>
