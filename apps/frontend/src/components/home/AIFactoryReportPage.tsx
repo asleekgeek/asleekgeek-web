@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Chart as ChartJS, registerables } from 'chart.js';
+import { Chart as ChartJS, registerables, Chart, TooltipItem } from 'chart.js';
 
 // Register all Chart.js components
 ChartJS.register(...registerables);
@@ -21,14 +21,14 @@ ChartJS.register(...registerables);
 const AIFactoryReportPage = () => {
   const [activeTab, setActiveTab] = useState('mig');
 
-    const gpuIdleChartRef = useRef<HTMLCanvasElement | null>(null);
-    const migRadarChartRef = useRef<HTMLCanvasElement | null>(null);
-    const tsRadarChartRef = useRef<HTMLCanvasElement | null>(null);
-    const utilizationChartRef = useRef<HTMLCanvasElement | null>(null);
-    const costChartRef = useRef<HTMLCanvasElement | null>(null);
+        const gpuIdleChartRef = useRef<HTMLCanvasElement | null>(null);
+        const migRadarChartRef = useRef<HTMLCanvasElement | null>(null);
+        const tsRadarChartRef = useRef<HTMLCanvasElement | null>(null);
+        const utilizationChartRef = useRef<HTMLCanvasElement | null>(null);
+        const costChartRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    const chartInstances: any[] = [];
+    const chartInstances: Chart[] = [];
 
     const PALETTE = {
         dark: '#222222',
@@ -40,13 +40,13 @@ const AIFactoryReportPage = () => {
     };
 
     const commonTooltipCallback = {
-        title: function(tooltipItems: any) {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-              return label.join(' ');
-            }
-            return label;
+                        title: function(tooltipItems: TooltipItem<'doughnut'>[]): string {
+                                const item = tooltipItems[0];
+                                const label = item.chart.data.labels?.[item.dataIndex];
+                                            if (Array.isArray(label)) {
+                                                return label.join(' ');
+                                            }
+                                            return typeof label === 'string' ? label : '';
         }
     };
 
