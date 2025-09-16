@@ -58,8 +58,8 @@ const AIFactoryReportPage = () => {
             tooltip: {
                 enabled: true,
                 backgroundColor: 'rgba(0,0,0,0.7)',
-                titleFont: { size: 14, weight: 'bold' as 'bold' },
-                bodyFont: { size: 12, weight: 'normal' as 'normal' },
+                titleFont: { size: 14, weight: 'bold' as const },
+                bodyFont: { size: 12, weight: 'normal' as const },
                 padding: 10,
                 cornerRadius: 4,
                 callbacks: commonTooltipCallback,
@@ -122,7 +122,7 @@ const AIFactoryReportPage = () => {
                 angleLines: { color: '#EEE' },
                 grid: { color: '#EEE' },
                 pointLabels: {
-                    font: { size: 14, weight: 'bold' as 'bold', family: "'Inter', sans-serif" },
+                    font: { size: 14, weight: 'bold' as const, family: "'Inter', sans-serif" },
                     color: PALETTE.gray
                 },
                 ticks: { display: false, stepSize: 2 },
