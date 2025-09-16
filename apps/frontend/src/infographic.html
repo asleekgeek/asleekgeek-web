@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Enterprise AI Factory on Kubernetes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@2.3.0/dist/chartjs-chart-treemap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .section-heading {
+            color: #003B73;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        .card:hover {
+             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+             transform: translateY(-5px);
+        }
+        .icon-bg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="bg-gradient-to-b from-[#003B73] to-[#004a8a] text-white p-8 md:p-12 text-center shadow-2xl">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-3 tracking-tight">The Enterprise AI Factory</h1>
+        <p class="text-xl md:text-2xl font-light text-[#BFD7ED] max-w-4xl mx-auto">A Blueprint for Multi-Tenant MLOps on Kubernetes with Shared GPUs</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8 space-y-24 mt-12">
+
+        <section id="problem">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-heading">The GPU Utilization Challenge</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto mb-12 text-slate-600">In standard Kubernetes, expensive GPUs are allocated exclusively to a single task, leading to massive underutilization as they sit idle waiting for bursty development and inference workloads.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="card p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#003B73]">Typical Workload Inefficiency</h3>
+                    <p class="text-center text-slate-500 mb-6">A significant portion of a GPU's lifecycle in a non-shared environment is spent idle, representing a major waste of capital expenditure and a bottleneck for innovation.</p>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="gpuIdleChart"></canvas>
+                    </div>
+                </div>
+                <div class="text-center p-6">
+                    <p class="text-2xl text-slate-700 mb-6">This inefficiency leads to...</p>
+                    <div class="bg-[#FF7F50] text-white rounded-2xl shadow-xl p-8 transform hover:scale-105 transition-transform duration-300">
+                        <p class="text-6xl md:text-8xl font-black">~85%</p>
+                        <p class="text-2xl font-semibold mt-2">Potential GPU Idle Time</p>
+                        <p class="font-light mt-1">in non-production, single-task environments.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-heading">The Solution: An Enterprise AI Factory</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto mb-12 text-slate-600">By establishing a centralized, multi-tenant MLOps platform, we transform isolated GPU resources into a shared, efficient, and democratized "AI Factory" that serves the entire organization.</p>
+            <div class="card p-8 md:p-12">
+                <div class="flex flex-col md:flex-row items-center justify-around gap-8">
+                    <div class="text-center">
+                         <div class="icon-bg bg-[#BFD7ED] mx-auto mb-3"><span class="text-3xl">📊</span></div>
+                         <div class="text-xl font-bold mt-2 text-[#003B73]">Raw Data &<br>Business Needs</div>
+                    </div>
+                    <div class="hidden md:block flex-grow border-t-2 border-dashed border-[#0074B7]"></div>
+                    <div class="border-4 border-dashed border-[#0074B7] rounded-xl p-8 text-center bg-blue-50/50">
+                        <h3 class="text-2xl font-bold text-[#003B73] mb-2">AI Platform on Kubernetes</h3>
+                        <p class="text-slate-600">Shared GPUs • MLOps Pipelines • Governance</p>
+                    </div>
+                    <div class="hidden md:block flex-grow border-t-2 border-dashed border-[#0074B7]"></div>
+                    <div class="text-center">
+                        <div class="icon-bg bg-[#FFCDB2] mx-auto mb-3"><span class="text-3xl">💡</span></div>
+                        <div class="text-xl font-bold mt-2 text-[#003B73]">Value-Driving<br>AI Applications</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sharing">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-heading">Architecting for Shared Power</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto mb-12 text-slate-600">The core technical decision is how to partition GPUs. The choice between hardware-level isolation (MIG) and software-level multiplexing (Time-Slicing) depends on workload requirements.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#003B73] mb-4">NVIDIA Multi-Instance GPU (MIG)</h3>
+                    <p class="text-slate-500 mb-6">Carves a single GPU into up to seven fully independent hardware partitions, guaranteeing performance and fault isolation.</p>
+                    <ul class="list-disc list-inside space-y-3 text-slate-600">
+                        <li><span class="font-semibold">Best for:</span> Production inference, critical workloads.</li>
+                        <li><span class="font-semibold text-green-600">Pro:</span> Predictable QoS and strong security.</li>
+                        <li><span class="font-semibold text-red-600">Con:</span> Less flexible, requires specific hardware.</li>
+                    </ul>
+                    <div class="chart-container mt-6 h-56 md:h-64"><canvas id="migChart"></canvas></div>
+                </div>
+                <div class="card p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#003B73] mb-4">Time-Slicing</h3>
+                    <p class="text-slate-500 mb-6">Allows multiple containers to share a single GPU by taking turns. It maximizes user density but offers no performance guarantees.</p>
+                     <ul class="list-disc list-inside space-y-3 text-slate-600">
+                        <li><span class="font-semibold">Best for:</span> Development, experimentation, bursty tasks.</li>
+                        <li><span class="font-semibold text-green-600">Pro:</span> High flexibility and user density.</li>
+                        <li><span class="font-semibold text-red-600">Con:</span> "Noisy neighbor" problem, no fault isolation.</li>
+                    </ul>
+                    <div class="chart-container mt-6 h-56 md:h-64"><canvas id="timeSlicingChart"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="governance">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-heading">Securing the Factory: Multi-Tenant Governance</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto mb-12 text-slate-600">Kubernetes provides powerful primitives to create secure, isolated environments for each team, ensuring fair resource allocation and preventing interference.</p>
+            <div class="card p-6 md:p-8">
+                <div class="chart-container mx-auto h-[400px] md:h-[450px]">
+                    <canvas id="governanceChart"></canvas>
+                </div>
+                <p class="text-center text-slate-500 mt-6 max-w-2xl mx-auto">A combination of Namespaces, RBAC, ResourceQuotas, and Network Policies creates secure sandboxes for each team to work within.</p>
+            </div>
+        </section>
+
+        <section id="workflow">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-heading">A Day in the Life: The Developer Workflow</h2>
+             <p class="text-lg text-center max-w-3xl mx-auto mb-12 text-slate-600">The platform provides a streamlined, automated path from idea to production, abstracting away infrastructure complexity.</p>
+            <div class="relative">
+                <!-- Vertical line -->
+                <div class="absolute left-1/2 -ml-px w-0.5 h-full bg-slate-200 hidden md:block" aria-hidden="true"></div>
+                <div class="space-y-16">
+                    <!-- Item 1 -->
+                    <div class="relative flex items-center md:justify-end">
+                        <div class="md:w-1/2 md:pr-8">
+                            <div class="card p-6">
+                                <h4 class="font-bold text-lg text-[#003B73]">Define Features</h4>
+                                <p class="text-sm text-slate-500 mt-1">Commit feature logic to the central Feast Git repository, making it discoverable and reusable.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 -ml-4 h-8 w-8 rounded-full bg-[#0074B7] border-4 border-white shadow-md flex items-center justify-center text-white font-bold">1</div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="relative flex items-center md:justify-start">
+                        <div class="absolute left-1/2 -ml-4 h-8 w-8 rounded-full bg-[#0074B7] border-4 border-white shadow-md flex items-center justify-center text-white font-bold">2</div>
+                        <div class="md:w-1/2 md:pl-8">
+                           <div class="card p-6">
+                               <h4 class="font-bold text-lg text-[#003B73]">Create Pipeline</h4>
+                               <p class="text-sm text-slate-500 mt-1">Author a training workflow in pure Python using the elegant and intuitive Flyte SDK.</p>
+                           </div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="relative flex items-center md:justify-end">
+                        <div class="md:w-1/2 md:pr-8">
+                            <div class="card p-6">
+                                <h4 class="font-bold text-lg text-[#003B73]">Train on GPU</h4>
+                                <p class="text-sm text-slate-500 mt-1">Declaratively request a GPU time-slice with a single line of code in the Flyte task definition.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 -ml-4 h-8 w-8 rounded-full bg-[#0074B7] border-4 border-white shadow-md flex items-center justify-center text-white font-bold">3</div>
+                    </div>
+                    <!-- Item 4 -->
+                     <div class="relative flex items-center md:justify-start">
+                        <div class="absolute left-1/2 -ml-4 h-8 w-8 rounded-full bg-[#FF7F50] border-4 border-white shadow-md flex items-center justify-center text-white font-bold">4</div>
+                        <div class="md:w-1/2 md:pl-8">
+                            <div class="card p-6">
+                                <h4 class="font-bold text-lg text-orange-700">Register Model</h4>
+                                <p class="text-sm text-slate-500 mt-1">The pipeline automatically versions the trained model and stores it in the MLflow registry.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                     <div class="relative flex items-center md:justify-end">
+                        <div class="md:w-1/2 md:pr-8">
+                            <div class="card p-6">
+                                <h4 class="font-bold text-lg text-orange-700">Deploy to Production</h4>
+                                <p class="text-sm text-slate-500 mt-1">Serve the model via a scalable KServe endpoint for low-latency, real-time inference.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 -ml-4 h-8 w-8 rounded-full bg-[#FF7F50] border-4 border-white shadow-md flex items-center justify-center text-white font-bold">5</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="monitoring">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-heading">Measuring Success: Monitoring & FinOps</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto mb-12 text-slate-600">You can't manage what you don't measure. Granular monitoring of GPU utilization and costs is essential for ensuring platform health, fairness, and cost-effectiveness.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#003B73] mb-4">GPU Utilization Tracking</h3>
+                    <p class="text-slate-500 mb-6">DCGM Exporter provides real-time visibility into how heavily each GPU is being used, helping to identify bottlenecks or optimization opportunities.</p>
+                    <div class="chart-container h-64 md:h-72"><canvas id="utilizationChart"></canvas></div>
+                </div>
+                <div class="card p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#003B73] mb-4">Cost Attribution</h3>
+                    <p class="text-slate-500 mb-6">By tracking resource consumption per namespace, FinOps tools like Kubecost can provide showback/chargeback reports, fostering accountability.</p>
+                     <div class="chart-container h-64 md:h-72"><canvas id="costChart"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#003B73] text-white p-8 text-center mt-24">
+        <p class="text-[#BFD7ED]">&copy; 2025 AI Platform Initiative. Driving innovation through efficient, governed, and scalable MLOps.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const OCEANIC_PALETTE = {
+                deepBlue: '#003B73',
+                brightBlue: '#0074B7',
+                lightBlue: '#BFD7ED',
+                coral: '#FF7F50',
+                white: '#FFFFFF',
+                gray: '#475569',
+                lightGray: '#cbd5e1'
+            };
+
+            const commonTooltipCallback = {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                      return label.join(' ');
+                    } else {
+                      return label;
+                    }
+                }
+            };
+
+            const commonChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: OCEANIC_PALETTE.deepBlue,
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: commonTooltipCallback,
+                        backgroundColor: '#FFF',
+                        titleColor: '#000',
+                        bodyColor: '#000',
+                        borderColor: OCEANIC_PALETTE.lightGray,
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: { color: OCEANIC_PALETTE.gray, font: { family: "'Inter', sans-serif" } },
+                        grid: { color: '#e2e8f0' }
+                    },
+                    x: {
+                        ticks: { color: OCEANIC_PALETTE.gray, font: { family: "'Inter', sans-serif" } },
+                        grid: { display: false }
+                    }
+                }
+            };
+
+            function wrapLabel(str, maxWidth) {
+                if (!str || str.length <= maxWidth) return str;
+                let wrapped = [];
+                let words = str.split(' ');
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > maxWidth) {
+                        wrapped.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                wrapped.push(currentLine.trim());
+                return wrapped;
+            }
+
+            const gpuIdleCtx = document.getElementById('gpuIdleChart');
+            if (gpuIdleCtx) {
+                new Chart(gpuIdleCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Idle Time', 'Active Compute Time'],
+                        datasets: [{
+                            label: 'GPU State',
+                            data: [85, 15],
+                            backgroundColor: [OCEANIC_PALETTE.lightBlue, OCEANIC_PALETTE.coral],
+                            borderColor: [OCEANIC_PALETTE.white],
+                            borderWidth: 5,
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: {
+                        responsive: true, maintainAspectRatio: false, cutout: '60%',
+                        plugins: {
+                            legend: { position: 'bottom', labels: { color: OCEANIC_PALETTE.deepBlue, padding: 20, font: { size: 14, family: "'Inter', sans-serif"}}},
+                            tooltip: { ...commonChartOptions.plugins.tooltip }
+                        }
+                    }
+                });
+            }
+
+            const migCtx = document.getElementById('migChart');
+            if(migCtx) {
+                new Chart(migCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Performance Isolation', 'Fault Isolation', 'User Density'],
+                        datasets: [{
+                            label: 'MIG',
+                            data: [9.5, 9.8, 5],
+                            backgroundColor: OCEANIC_PALETTE.brightBlue,
+                            borderRadius: 6,
+                            barPercentage: 0.6
+                        }]
+                    },
+                    options: { ...commonChartOptions, indexAxis: 'y', scales: { y: { ...commonChartOptions.scales.y, grid: { display: false }}, x: { ...commonChartOptions.scales.x, max: 10, grid: { color: '#e2e8f0' } } } }
+                });
+            }
+
+            const timeSlicingCtx = document.getElementById('timeSlicingChart');
+            if(timeSlicingCtx) {
+                new Chart(timeSlicingCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Performance Isolation', 'Fault Isolation', 'User Density'],
+                        datasets: [{
+                            label: 'Time-Slicing',
+                            data: [4, 2, 9],
+                            backgroundColor: OCEANIC_PALETTE.coral,
+                            borderRadius: 6,
+                            barPercentage: 0.6
+                        }]
+                    },
+                    options: { ...commonChartOptions, indexAxis: 'y', scales: { y: { ...commonChartOptions.scales.y, grid: { display: false }}, x: { ...commonChartOptions.scales.x, max: 10, grid: { color: '#e2e8f0' } } } }
+                });
+            }
+
+            const governanceCtx = document.getElementById('governanceChart');
+            if(governanceCtx) {
+                const rawLabels = ['Kubernetes Cluster', 'Namespace Team A', 'Namespace Team B', 'RBAC Policy', 'Resource Quota', 'Network Policy'];
+                const labels = rawLabels.map(l => wrapLabel(l, 16));
+
+                new Chart(governanceCtx, {
+                    type: 'treemap',
+                    data: {
+                         labels: labels,
+                         datasets: [{
+                            label: 'Governance Layers',
+                            tree: [
+                                {label: 'Kubernetes Cluster', value: 80, children: [
+                                    {label: 'Namespace: Team A', value: 40, children: [
+                                        {label: 'RBAC Policy', value: 10},
+                                        {label: 'Resource Quota', value: 10},
+                                        {label: 'Network Policy', value: 10},
+                                    ]},
+                                    {label: 'Namespace: Team B', value: 40, children: [
+                                        {label: 'RBAC Policy', value: 10},
+                                        {label: 'Resource Quota', value: 10},
+                                        {label: 'Network Policy', value: 10},
+                                    ]},
+                                ]}
+                            ],
+                            key: 'value',
+                            groups: ['label'],
+                            backgroundColor: (ctx) => {
+                                if (ctx.type !== 'data' || !ctx.raw) return 'transparent';
+                                const node = ctx.raw._data;
+                                if (!node) return 'transparent';
+                                if (node.label.startsWith('Kubernetes')) return '#e2e8f0';
+                                if (node.label.startsWith('Namespace')) return OCEANIC_PALETTE.brightBlue + 'E6';
+                                return OCEANIC_PALETTE.deepBlue + 'E6';
+                            },
+                            fontColor: 'white',
+                            spacing: 1, borderWidth: 2, borderColor: 'white',
+                            labels: {
+                                align: 'center', display: true,
+                                color: (ctx) => {
+                                    if(!ctx.raw || !ctx.raw._data) return 'black';
+                                    const node = ctx.raw._data;
+                                    return node.label.startsWith('Kubernetes') ? OCEANIC_PALETTE.deepBlue : 'white';
+                                },
+                                font: { size: 16, weight: 'bold', family: "'Inter', sans-serif" },
+                                formatter: (ctx) => ctx.raw ? (Array.isArray(ctx.raw._data.label) ? ctx.raw._data.label : [ctx.raw._data.label]) : ''
+                            }
+                         }]
+                    },
+                     options: {
+                        responsive: true, maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { ...commonChartOptions.plugins.tooltip }
+                        }
+                    }
+                });
+            }
+
+            const utilizationCtx = document.getElementById('utilizationChart');
+            if (utilizationCtx) {
+                new Chart(utilizationCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'],
+                        datasets: [{
+                            label: 'GPU Utilization %',
+                            data: [15, 20, 45, 85, 90, 60, 25],
+                            borderColor: OCEANIC_PALETTE.brightBlue,
+                            backgroundColor: OCEANIC_PALETTE.brightBlue + '33',
+                            fill: true, tension: 0.4,
+                            pointBackgroundColor: OCEANIC_PALETTE.brightBlue,
+                            pointBorderColor: OCEANIC_PALETTE.white,
+                            pointHoverRadius: 7, pointHoverBackgroundColor: OCEANIC_PALETTE.brightBlue,
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+            }
+
+            const costCtx = document.getElementById('costChart');
+            if (costCtx) {
+                const costLabels = ['Team Data Science', 'Team Product AI', 'Team Research'];
+                new Chart(costCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: costLabels,
+                        datasets: [{
+                            label: 'Estimated Monthly Cost ($)',
+                            data: [4200, 5500, 2100],
+                            backgroundColor: [OCEANIC_PALETTE.deepBlue, OCEANIC_PALETTE.brightBlue, OCEANIC_PALETTE.coral],
+                            borderRadius: 6
+                        }]
+                    },
+                    options: {
+                        ...commonChartOptions,
+                        scales: {
+                           ...commonChartOptions.scales,
+                           x: { ...commonChartOptions.scales.x, ticks: { ...commonChartOptions.scales.x.ticks,
+                                callback: function(value) {
+                                   return wrapLabel(this.getLabelForValue(value), 16);
+                                }
+                           }}
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
